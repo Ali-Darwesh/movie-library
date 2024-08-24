@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\Rating;
 use App\Services\ratingService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class RatingController extends Controller
 {
@@ -27,11 +29,19 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
+        $movie = Movie::findOrFail($request->input('movie_id'));
+
+        if ($movie->rating) {
+            // Throw a validation error if a rating already exists
+            throw ValidationException::withMessages([
+                'rating' => 'This movie already has a rating.',
+            ]);
+        }
         $validatedData = $request->validate([
-            'user_id' => 'required',
-            'movie_id' => 'required',
-            'rating' => 'required|integer',
-            'review' => 'required|string|max:255',
+            'user_id' => 'sometimes',
+            'movie_id' => 'sometimes',
+            'rating' => 'sometimes|integer',
+            'review' => 'sometimes|string|max:255',
         ]);
         $rating = $this->ratingService->createRating($validatedData);
         return response()->json($rating, 201);

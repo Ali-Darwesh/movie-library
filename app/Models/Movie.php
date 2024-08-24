@@ -20,7 +20,7 @@ class Movie extends Model
         'release_year',
         'description',
     ];
-    public function ratings(): HasOne
+    public function rating(): HasOne
     {
         return $this->hasOne(Rating::class);
     }

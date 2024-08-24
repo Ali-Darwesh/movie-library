@@ -36,7 +36,7 @@ class MovieController extends Controller
 
         $movies = Movie::filter($filters)
             ->sort($sortBy, $sortOrder)
-            ->with('ratings')
+            ->with('rating')
             ->paginateMovies($perPage);
 
 
