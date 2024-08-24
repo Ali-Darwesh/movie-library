@@ -57,8 +57,8 @@ class RatingController extends Controller
         // return response()->json($request->all(), 200);
         $validatedData = $request->validate([
 
-            'rating' => 'sometimes |required|integer',
-            'review' => 'sometimes |required|string|max:255',
+            'rating' => 'sometimes |integer',
+            'review' => 'sometimes |string|max:255',
         ]);
 
 

@@ -62,11 +62,11 @@ class MovieController extends Controller
     {
         // return response()->json($request->all(), 200);
         $validatedData = $request->validate([
-            'title' => 'sometimes|required|unique:movies|max:255',
-            'director' => 'sometimes | required|string|max:255',
-            'genre' => 'sometimes|required|string|max:255',
-            'release_year' => 'sometimes |required|integer',
-            'description' => 'sometimes|required|string|max:255',
+            'title' => 'sometimes|unique:movies|max:255',
+            'director' => 'sometimes | string|max:255',
+            'genre' => 'sometimes|required|max:255',
+            'release_year' => 'sometimes |integer',
+            'description' => 'sometimes|string|max:255',
         ]);
 
 

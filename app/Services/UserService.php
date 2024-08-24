@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Services;
+
+
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Psy\CodeCleaner\ReturnTypePass;
+
+class UserService
+{
+
+
+    public function createUser(array $data)
+    {
+        return User::create($data);
+    }
+    public function updateUser(User $user, array $data)
+    {
+        // $movie = Movie::findOrFail($movie->i/d); // Find the movie or fail with a 404 error
+
+        $user->update($data);
+        return $user;
+    }
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        User::resetAutoIncrement();
+        return $user;
+    }
+}
