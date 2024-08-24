@@ -17,10 +17,32 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index()
+    // {
+    // $allMovies = []; // Initialize an empty array
+    // $totalPages = Movie::paginate(2)->lastPage(); // Get the total number of pages
+
+    // foreach (range(1, $totalPages) as $page) {
+    //     $movies = Movie::paginate(2, ['*'], 'page', $page); // Fetch the movies for the current page
+    //     $allMovies[$page] = $movies->items(); // Store the current page's movies in the array
+    // }
+    //==========
+    public function index(Request $request)
     {
+        $filters = $request->only(['director', 'genre']);
+        $sortBy = $request->query('sort_by');
+        $sortOrder = $request->query('sort_order');
+        $perPage = $request->query('per_page');
+
+        $movies = Movie::filter($filters)
+            ->sort($sortBy, $sortOrder)
+            ->with('ratings')
+            ->paginateMovies($perPage);
+
+
+        //===========
         // $movies = Movie::all();
-        $movies = Movie::with('ratings')->get();
+        // $movies = Movie::with('ratings')->get();
 
         return response()->json(['movies' => $movies], 200);
     }

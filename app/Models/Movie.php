@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Traits\ResetsAutoIncrement;
+use Illuminate\Database\Eloquent\Builder;
 
 class Movie extends Model
 {
@@ -19,6 +20,10 @@ class Movie extends Model
         'release_year',
         'description',
     ];
+    public function ratings(): HasOne
+    {
+        return $this->hasOne(Rating::class);
+    }
     public function scopeByDirector($query, $director)
     {
         return $query->where('director', $director);
@@ -27,8 +32,31 @@ class Movie extends Model
     {
         return str_word_count($this->description);
     }
-    public function ratings(): HasMany
+    public function scopeFilter(Builder $query, $filters)
     {
-        return $this->hasMany(Rating::class);
+        if (!empty($filters['director'])) {
+            $query->where('director', 'like', '%' . $filters['director'] . '%');
+        }
+
+        if (!empty($filters['genre'])) {
+            $query->where('genre', 'like', '%' . $filters['genre'] . '%');
+        }
+
+        return $query;
+    }
+
+    public function scopeSort(Builder $query, $sortBy, $sortOrder)
+    {
+        if ($sortBy) {
+            return $query->orderBy($sortBy, $sortOrder);
+        }
+        return $query;
+    }
+    public function scopePaginateMovies(Builder $query, $per_page)
+    {
+        if ($per_page) {
+            return $query->paginate($per_page);
+        }
+        return $query->get();
     }
 }
