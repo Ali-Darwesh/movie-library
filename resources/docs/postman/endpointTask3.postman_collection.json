@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "7e3e59bb-d204-43c8-852f-ec2aa6f7bcb8",
+		"name": "endpointTask3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26325739"
+	},
+	"item": [
+		{
+			"name": "addUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "ali",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ali@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/users",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURl}}api/users",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addmovie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "fast2",
+							"type": "text"
+						},
+						{
+							"key": "director",
+							"value": "mohammad",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "action",
+							"type": "text"
+						},
+						{
+							"key": "release_year",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "action movie",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/movies",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-movies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURl}}api/movies",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovies-with-pagination-filter-sort",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURl}}api/movies?per_page=1&sort_by=release_year&sort_order=asc&director=ali&genre=action",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "1"
+						},
+						{
+							"key": "sort_by",
+							"value": "release_year"
+						},
+						{
+							"key": "sort_order",
+							"value": "asc"
+						},
+						{
+							"key": "director",
+							"value": "ali"
+						},
+						{
+							"key": "genre",
+							"value": "action"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMovie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "dddd",
+							"type": "text"
+						},
+						{
+							"key": "director",
+							"value": "zain",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "comedy",
+							"type": "text"
+						},
+						{
+							"key": "release_year",
+							"value": "2010",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "sdfdfs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/movies/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addRating",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "movie_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "review",
+							"value": "dddd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/ratings",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRatings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURl}}api/ratings",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteRating",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURl}}api/ratings/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"ratings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editRating",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/ratings/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"ratings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showMovie",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMovie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURl}}api/movies/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ali",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURl}}api/users/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURl}}api/users/1",
+					"host": [
+						"{{baseURl}}api"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURl",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		}
+	]
+}

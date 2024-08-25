@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Traits\ResetsAutoIncrement;
 use Illuminate\Database\Eloquent\Builder;
 
 class Movie extends Model
 {
+    // use trait
     use ResetsAutoIncrement;
     use HasFactory;
     protected $fillable = [
@@ -20,18 +20,17 @@ class Movie extends Model
         'release_year',
         'description',
     ];
+    //one to one relation with rating
     public function rating(): HasOne
     {
         return $this->hasOne(Rating::class);
     }
-    public function scopeByDirector($query, $director)
-    {
-        return $query->where('director', $director);
-    }
+
     public function descriptionWordCount()
     {
         return str_word_count($this->description);
     }
+    //Scope to filter data on director or genre
     public function scopeFilter(Builder $query, $filters)
     {
         if (!empty($filters['director'])) {
@@ -44,7 +43,11 @@ class Movie extends Model
 
         return $query;
     }
-
+    /**
+     * Scope to sort on release_year ordered by sortOrder
+     * @param Builder $query, $sortBy, $sortOrder
+     *
+     */
     public function scopeSort(Builder $query, $sortBy, $sortOrder)
     {
         if ($sortBy) {
@@ -52,6 +55,10 @@ class Movie extends Model
         }
         return $query;
     }
+    /**
+     * Pagination 
+     * @param Builder $query, $per_page
+     */
     public function scopePaginateMovies(Builder $query, $per_page)
     {
         if ($per_page) {

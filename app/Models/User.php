@@ -11,6 +11,7 @@ use App\Traits\ResetsAutoIncrement;
 
 class User extends Authenticatable
 {
+    // use trait
     use ResetsAutoIncrement;
     use HasFactory, Notifiable;
 
@@ -47,6 +48,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    //relation with rating
     public function ratings(): HasMany
     {
         return $this->hasMany(Rating::class);

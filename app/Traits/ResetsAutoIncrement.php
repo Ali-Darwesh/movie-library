@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 trait ResetsAutoIncrement
 {
+    //Trait to Reset Auto Increment ID
+
     public static function resetAutoIncrement()
     {
         DB::statement('SET @count = 0');

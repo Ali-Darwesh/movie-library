@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Traits\ResetsAutoIncrement;
 
 class Rating extends Model
-{
+{ // use trait
     use ResetsAutoIncrement;
     use HasFactory;
     protected $fillable = [
@@ -17,6 +17,7 @@ class Rating extends Model
         'rating',
         'review'
     ];
+    //relations
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
